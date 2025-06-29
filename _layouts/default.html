@@ -1,15 +1,89 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ page.title }}</title>
+    <style>
+        :root {
+            --bg-color: #e6f3ff;
+            --text-color: #333;
+            --card-color: #fff;
+            --highlight-color: #00a0e9;
+            --border-color: #cce0ff;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+        }
+        
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .header {
+            display: flex;
+            align-items: center;
+            padding: 20px 0;
+        }
+        
+        .avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 10px;
+            object-fit: cover;
+            margin-right: 15px;
+        }
+        
+        .profile-info h1 {
+            margin: 0;
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--highlight-color);
+        }
+        
+        .profile-info p {
+            margin: 5px 0 0;
+            font-size: 14px;
+            color: #666;
+        }
+        
+        .footer {
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            text-align: center;
+            padding: 10px 0;
+        }
+        
+        .footer-item {
+            margin-bottom: 10px; /* 添加垂直间距 */
+        }
+        
+        a {
+            color: var(--highlight-color);
+            text-decoration: none;
+        }
+        
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
 <body>
-    <h1>{{ page.title }}</h1>
-    <p>{{ page.date }}</p>
-    <div>
-        {{ content }}
-    </div>
+  {% include header.html %}
+  <div class="container">
+    {{ content }}
+  </div>
+  {% include footer.html %}
 </body>
 </html>
