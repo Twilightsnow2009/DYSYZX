@@ -1,10 +1,70 @@
+# 基础配置（保留你原有的设置）
 title: My Blog
 email: your-email@example.com
-description: >- # this means to ignore newlines until "baseurl:"
+description: >- 
   Write an awesome description for your new site here. You can edit this
   line in _config.yml. It will appear in your document head meta (for
   Google search results) and in your feed.xml site description.
-baseurl: "" # the subpath of your site, e.g. /blog
-url: "" # the base hostname & protocol for your site, e.g. http://example.com
+baseurl: "" # 如果你需要部署在子路径下（如example.com/blog），请修改这里
+url: "" # 部署后的完整URL（如https://twilightsnow2009.github.io/666/）
 twitter_username: your-twitter-handle
 github_username:  your-github-handle
+
+# 新增Jekyll核心配置
+markdown: kramdown
+highlighter: rouge
+permalink: /:year/:month/:day/:title/ # 文章永久链接格式
+timezone: Asia/Shanghai # 设置时区（根据你的位置调整）
+
+# 文章与页面配置
+paginate: 5 # 每页显示5篇文章
+paginate_pathpaginate: 5 # 每页显示5篇文章
+paginate_path: "/page:num/"
+show_drafts: false # 不显示草稿文章
+future: false # 不显示日期在未来的文章
+
+# 集合与默认值
+defaults:
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"
+      comments: true # 默认为文章启用评论
+
+# 插件配置
+plugins:
+  - jekyll-feed
+  - jekyll-paginate
+  - jekyll-seo-tag
+
+# 站点结构配置
+collections:
+  pages:
+    output: true
+    permalink: /:path/
+
+# 网站作者信息（方便在模板中引用）
+author:
+  name: Your Name
+  bio: 关于你的简短介绍
+  avatar: /assets/images/avatar.jpg # 头像路径
+
+# 社交链接（用于页脚或侧边栏）
+social:
+  - platform: GitHub
+    url: https://github.com/your-github-username
+  - platform: Twitter
+    url: https://twitter.com/your-twitter-handle
+  - platform: LinkedIn
+    url: https://linkedin.com/in/your-linkedin-profile
+
+# 其他自定义设置
+disqus:
+  shortname: your-disqus-shortname # 如果你使用Disqus评论
+
+# 静态资源路径配置
+assets:
+  images: /assets/images/
+  css: /assets/css/
+  js: /assets/js/
