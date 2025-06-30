@@ -267,7 +267,29 @@
             <div class="footer-bottom">
                 <p>重要提示:该网站由本校学生制作，并非代替学校官方，本校暂未有网站，请仔细甄别！</p>
                 <p>开源地址:https://github.com/Twilightsnow2009/DYSYZX</p>
-                <p>本网站部分内容来源于公开互联网，如有侵权请联系删除.</p>
+                <p>本网站部分内容来源于公开互联网，如有侵权请联系删除.联系方式:<body>
+  <div class="qq-container">
+    <h2></h2>
+    <div class="qq-display" id="qqDisplay">点击按钮查看联系方式</div>
+    <button class="qq-button" id="showButton">显示 QQ</button>
+  </div>
+
+  <script>
+    // 加密后的 QQ 号码（Unicode 编码）
+    const encryptedQQ = [50, 51, 50, 51, 56, 51, 51, 49, 54, 56];
+    
+    // 解密函数
+    function decryptQQ() {
+        return encryptedQQ.map(code => String.fromCharCode(code)).join('');
+    }
+    
+    // 显示 QQ 号码
+    document.getElementById('showButton').addEventListener('click', function() {
+        const qqDisplay = document.getElementById('qqDisplay');
+        qqDisplay.textContent = decryptQQ();
+    });
+  </script>
+                </body></p>
             </div>
         </div>
     </footer>
