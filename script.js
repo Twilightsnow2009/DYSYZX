@@ -1,135 +1,642 @@
-// 页面加载完成后执行
-document.addEventListener('DOMContentLoaded', function() {
-    // 导航栏滚动效果
-    window.addEventListener('scroll', function() {
-        const header = document.querySelector('header');
-        if (window.scrollY > 100) {
-            header.style.background = 'rgba(10, 75, 120, 0.95)';
-            header.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.2)';
-        } else {
-            header.style.background = '#0a4b78';
-            header.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)';
-        }
-    });
+/* 基础样式重置 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-    // 平滑滚动到锚点
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
-            e.preventDefault();
-            
-            const targetId = this.getAttribute('href');
-            const targetElement = document.querySelector(targetId);
-            
-            if (targetElement) {
-                window.scrollTo({
-                    top: targetElement.offsetTop - 70,
-                    behavior: 'smooth'
-                });
-                
-                // 更新导航栏活跃状态
-                document.querySelectorAll('nav ul li a').forEach(link => {
-                    link.classList.remove('active');
-                });
-                this.classList.add('active');
-            }
-        });
-    });
+body {
+    font-family: 'Microsoft YaHei', Arial, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f9f9f9;
+}
 
-    // 标签页切换
-    const tabButtons = document.querySelectorAll('.tab-btn');
-    const tabContents = document.querySelectorAll('.tab-content');
-    
-    tabButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            // 移除所有按钮和内容的活跃状态
-            tabButtons.forEach(btn => btn.classList.remove('active'));
-            tabContents.forEach(content => content.classList.remove('active'));
-            
-            // 添加当前按钮和对应内容的活跃状态
-            this.classList.add('active');
-            const tabId = this.getAttribute('data-tab');
-            document.getElementById(tabId).classList.add('active');
-        });
-    });
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
 
-    // 新闻轮播
-    const newsItems = document.querySelectorAll('.news-item');
-    const dots = document.querySelectorAll('.dot');
-    const prevBtn = document.querySelector('.prev-btn');
-    const nextBtn = document.querySelector('.next-btn');
-    
-    let currentIndex = 0;
-    
-    function showNews(index) {
-        // 隐藏所有新闻项目
-        newsItems.forEach(item => item.classList.remove('active'));
-        dots.forEach(dot => dot.classList.remove('active'));
-        
-        // 显示当前新闻项目
-        newsItems[index].classList.add('active');
-        dots[index].classList.add('active');
-        
-        currentIndex = index;
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+ul {
+    list-style: none;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 40px;
+    font-size: 32px;
+    color: #0a4b78;
+    position: relative;
+    padding-bottom: 15px;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 3px;
+    background-color: #1e88e5;
+}
+
+/* 头部导航 */
+header {
+    background-color: #0a4b78;
+    color: white;
+    padding: 15px 0;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo img {
+    height: 50px;
+    margin-right: 15px;
+}
+
+.logo h1 {
+    font-size: 24px;
+    margin-bottom: 5px;
+}
+
+.logo p {
+    font-size: 14px;
+    opacity: 0.8;
+}
+
+nav ul {
+    display: flex;
+}
+
+nav ul li {
+    margin-left: 20px;
+}
+
+nav ul li a {
+    padding: 8px 12px;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+nav ul li a:hover, 
+nav ul li a.active {
+    background-color: #1e88e5;
+}
+
+/* 首页英雄区 */
+.hero {
+    height: 100vh;
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://tc.z.wiki/autoupload/Sn6rqN55gf0ClT4mS6xZG7ZxKlOH9HiOscR_FDAZwcqyl5f0KlZfm6UsKj-HyTuv/20250630/oyF2/1200X675/IMG_20250630_161547.jpg');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    color: white;
+    text-align: center;
+    margin-top: 60px;
+}
+
+.hero-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.hero-content h2 {
+    font-size: 48px;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.hero-content p {
+    font-size: 24px;
+    margin-bottom: 30px;
+}
+
+.btn {
+    display: inline-block;
+    background-color: #1e88e5;
+    color: white;
+    padding: 12px 30px;
+    border-radius: 30px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.btn:hover {
+    background-color: #0d47a1;
+    transform: translateY(-3px);
+}
+
+/* 关于我们部分 */
+.about {
+    padding: 80px 0;
+    background-color: white;
+}
+
+.about-content {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+}
+
+.about-text {
+    flex: 1;
+}
+
+.about-text p {
+    margin-bottom: 15px;
+    line-height: 1.8;
+}
+
+.about-image {
+    flex: 1;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* 校园环境部分 */
+.campus {
+    padding: 80px 0;
+    background-color: #f5f5f5;
+}
+
+.campus-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.gallery-item {
+    text-align: center;
+    overflow: hidden;
+    border-radius: 8px;
+    transition: transform 0.3s;
+}
+
+.gallery-item:hover {
+    transform: translateY(-10px);
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    transition: transform 0.3s;
+}
+
+.gallery-item:hover img {
+    transform: scale(1.05);
+}
+
+.gallery-item p {
+    margin-top: 10px;
+    font-weight: bold;
+    color: #0a4b78;
+}
+
+/* 师资力量部分 */
+.faculty {
+    padding: 80px 0;
+    background-color: white;
+}
+
+.faculty-stats {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 40px;
+    flex-wrap: wrap;
+}
+
+.stat-item {
+    text-align: center;
+    padding: 20px;
+}
+
+.stat-item i {
+    font-size: 36px;
+    color: #1e88e5;
+    margin-bottom: 10px;
+}
+
+.stat-item h3 {
+    font-size: 36px;
+    color: #0a4b78;
+    margin-bottom: 5px;
+}
+
+.stat-item p {
+    color: #666;
+}
+
+.faculty-intro {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+    padding: 20px;
+    background-color: #f0f7ff;
+    border-radius: 8px;
+}
+
+/* 课程设置部分 */
+.programs {
+    padding: 80px 0;
+    background-color: #f5f5f5;
+}
+
+.programs .section-title {
+    text-align: center;
+}
+
+.program-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.program-item {
+    display: flex;
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+}
+
+.program-item:hover {
+    transform: translateY(-5px);
+}
+
+.program-icon {
+    margin-right: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    background-color: #e3f2fd;
+    border-radius: 50%;
+}
+
+.program-icon i {
+    font-size: 24px;
+    color: #1e88e5;
+}
+
+.program-info h3 {
+    margin-bottom: 5px;
+    color: #0a4b78;
+}
+
+/* 校园新闻部分 */
+.news {
+    padding: 80px 0;
+    background-color: white;
+}
+
+.news-slider {
+    position: relative;
+    margin: 0 auto;
+    max-width: 800px;
+}
+
+.news-item {
+    display: none;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+.news-item.active {
+    display: flex;
+}
+
+.news-image {
+    flex: 1;
+    margin-right: 20px;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.news-content {
+    flex: 2;
+}
+
+.news-date {
+    display: inline-block;
+    background-color: #e3f2fd;
+    color: #1e88e5;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 12px;
+    margin-bottom: 10px;
+}
+
+.news-content h3 {
+    margin-bottom: 10px;
+    color: #0a4b78;
+}
+
+.news-content p {
+    margin-bottom: 15px;
+    line-height: 1.6;
+    color: #555;
+}
+
+.read-more {
+    display: inline-flex;
+    align-items: center;
+    color: #1e88e5;
+    font-weight: bold;
+}
+
+.read-more i {
+    margin-left: 5px;
+    transition: transform 0.3s;
+}
+
+.read-more:hover i {
+    transform: translateX(5px);
+}
+
+.slider-controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.prev-btn, .next-btn {
+    background: none;
+    border: none;
+    font-size: 20px;
+    color: #666;
+    cursor: pointer;
+    padding: 5px 10px;
+    transition: color 0.3s;
+}
+
+.prev-btn:hover, .next-btn:hover {
+    color: #1e88e5;
+}
+
+.slider-dots {
+    margin: 0 20px;
+    display: flex;
+}
+
+.dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: #ddd;
+    margin: 0 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.dot.active {
+    background-color: #1e88e5;
+}
+
+/* 页脚部分 */
+footer {
+    background-color: #0a4b78;
+    color: white;
+    padding: 60px 0 20px;
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    margin-bottom: 40px;
+}
+
+.footer-info h3,
+.footer-links h3,
+.footer-contact h3 {
+    margin-bottom: 20px;
+    font-size: 20px;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.footer-info h3::after,
+.footer-links h3::after,
+.footer-contact h3::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 50px;
+    height: 2px;
+    background-color: #1e88e5;
+}
+
+.footer-info p {
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.footer-info i {
+    margin-right: 10px;
+    color: #1e88e5;
+}
+
+.footer-links ul li {
+    margin-bottom: 10px;
+}
+
+.footer-links ul li a {
+    color: #ccc;
+    transition: color 0.3s;
+}
+
+.footer-links ul li a:hover {
+    color: white;
+}
+
+.footer-contact form {
+    display: flex;
+    flex-direction: column;
+}
+
+.footer-contact input,
+.footer-contact textarea {
+    margin-bottom: 10px;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+}
+
+.footer-contact textarea {
+    height: 100px;
+    resize: none;
+}
+
+.footer-contact .btn {
+    margin-top: 10px;
+    align-self: flex-start;
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.social-links a {
+    color: white;
+    margin-left: 15px;
+    font-size: 20px;
+    transition: color 0.3s;
+}
+
+.social-links a:hover {
+    color: #1e88e5;
+}
+
+/* 回到顶部按钮 */
+.back-to-top {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 50px;
+    height: 50px;
+    background-color: #1e88e5;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s;
+    z-index: 999;
+}
+
+.back-to-top:hover {
+    background-color: #0d47a1;
+    transform: translateY(-5px);
+}
+
+.back-to-top.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* 响应式设计 */
+@media (max-width: 992px) {
+    .about-content {
+        flex-direction: column;
     }
     
-    // 初始化显示第一条新闻
-    showNews(0);
+    .hero-content h2 {
+        font-size: 36px;
+    }
     
-    // 自动轮播
-    let interval = setInterval(() => {
-        let nextIndex = (currentIndex + 1) % newsItems.length;
-        showNews(nextIndex);
-    }, 5000);
+    .hero-content p {
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 768px) {
+    header .container {
+        flex-direction: column;
+    }
     
-    // 点击前进和后退按钮
-    nextBtn.addEventListener('click', () => {
-        clearInterval(interval);
-        let nextIndex = (currentIndex + 1) % newsItems.length;
-        showNews(nextIndex);
-        interval = setInterval(() => {
-            let nextIndex = (currentIndex + 1) % newsItems.length;
-            showNews(nextIndex);
-        }, 5000);
-    });
+    nav ul {
+        margin-top: 15px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
     
-    prevBtn.addEventListener('click', () => {
-        clearInterval(interval);
-        let prevIndex = (currentIndex - 1 + newsItems.length) % newsItems.length;
-        showNews(prevIndex);
-        interval = setInterval(() => {
-            let nextIndex = (currentIndex + 1) % newsItems.length;
-            showNews(nextIndex);
-        }, 5000);
-    });
+    nav ul li {
+        margin: 5px;
+    }
     
-    // 点击指示点切换新闻
-    dots.forEach((dot, index) => {
-        dot.addEventListener('click', () => {
-            clearInterval(interval);
-            showNews(index);
-            interval = setInterval(() => {
-                let nextIndex = (currentIndex + 1) % newsItems.length;
-                showNews(nextIndex);
-            }, 5000);
-        });
-    });
+    .faculty-stats {
+        flex-direction: column;
+    }
     
-    // 回到顶部按钮
-    const backToTopBtn = document.querySelector('.back-to-top');
+    .program-item {
+        flex-direction: column;
+        text-align: center;
+    }
     
-    backToTopBtn.addEventListener('click', function() {
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
-        });
-    });
+    .program-icon {
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
     
-    // 显示/隐藏回到顶部按钮
-    window.addEventListener('scroll', function() {
-        if (window.scrollY > 300) {
-            backToTopBtn.classList.add('show');
-        } else {
-            backToTopBtn.classList.remove('show');
-        }
-    });
-});
+    .news-item {
+        flex-direction: column;
+    }
+    
+    .news-image {
+        margin-right: 0;
+        margin-bottom: 15px;
+    }
+    
+    .footer-content {
+        grid-template-columns: 1fr;
+    }
+    
+    .footer-bottom {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .social-links {
+        margin-top: 15px;
+    }
+}
+
+@media (max-width: 576px) {
+    .hero-content h2 {
+        font-size: 28px;
+    }
+    
+    .hero-content p {
+        font-size: 16px;
+    }
+    
+    .section-title {
+        font-size: 24px;
+    }
+}
