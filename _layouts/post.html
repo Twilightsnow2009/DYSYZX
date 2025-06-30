@@ -1,11 +1,6 @@
 ---
-layout: default  # 继承默认布局
+layout: default
 ---
-
-<article>
-  <h1>{{ page.title }}</h1>  <!-- 显示文章标题 -->
-  <time>{{ page.date | date: "%Y年%m月%d日" }}</time>  <!-- 显示文章日期 -->
-  <div class="content">
-    {{ content }}  <!-- 显示文章内容 -->
-  </div>
-</article>
+<h1>{{ page.title }}</h1>
+<p>{{ page.date | date: "%Y-%m-%d" }}</p>
+<div>{{ content }}</div>
