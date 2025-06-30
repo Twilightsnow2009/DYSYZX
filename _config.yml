@@ -5,8 +5,8 @@ description: >-
   Write an awesome description for your new site here. You can edit this
   line in _config.yml. It will appear in your document head meta (for
   Google search results) and in your feed.xml site description.
-baseurl: "/666" # 必须设置为仓库名，否则链接会失效
-url: "https://twilightsnow2009.github.io" # 部署后的完整URL（不带仓库名）
+baseurl: "/666"  # 必须与仓库名一致
+url: "https://twilightsnow2009.github.io"
 twitter_username: your-twitter-handle
 github_username:  your-github-handle
 
