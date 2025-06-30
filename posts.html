@@ -8,8 +8,9 @@ title: Posts
 <ul>
   {% for post in site.posts %}
     <li>
-      <a href="{{ post.url }}">{{ post.title }}</a>
-      <time datetime="{{ post.date | date: '%Y-%m-%d' }}">{{ post.date | date: '%B %d, %Y' }}</time>
+      <!-- 关键修改：添加 relative_url 过滤器 -->
+      <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+      <time>{{ post.date | date: "%Y-%m-%d" }}</time>
     </li>
   {% endfor %}
-</ul>
+    </ul>
