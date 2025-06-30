@@ -112,7 +112,7 @@ nav ul li a.active {
 /* 首页英雄区 */
 .hero {
     height: 100vh;
-    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://tc.z.wiki/autoupload/Sn6rqN55gf0ClT4mS6xZG7ZxKlOH9HiOscR_FDAZwcqyl5f0KlZfm6UsKj-HyTuv/20250630/Ags1/1836X1224/ea3ab701c0ed272a2221ff6f4b25a5f2.jpg');
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://tc.z.wiki/autoupload/Sn6rqN55gf0ClT4mS6xZG7ZxKlOH9HiOscR_FDAZwcqyl5f0KlZfm6UsKj-HyTuv/20250630/oyF2/1200X675/IMG_20250630_161547.jpg');
     background-size: cover;
     background-position: center;
     display: flex;
@@ -272,49 +272,8 @@ nav ul li a.active {
     background-color: #f5f5f5;
 }
 
-.tab-buttons {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 30px;
-}
-
-.tab-btn {
-    background: none;
-    border: none;
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
-    color: #666;
-    position: relative;
-}
-
-.tab-btn::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 0;
-    height: 3px;
-    background-color: #1e88e5;
-    transition: width 0.3s;
-}
-
-.tab-btn.active {
-    color: #0a4b78;
-    font-weight: bold;
-}
-
-.tab-btn.active::after {
-    width: 100%;
-}
-
-.tab-content {
-    display: none;
-}
-
-.tab-content.active {
-    display: block;
+.programs .section-title {
+    text-align: center;
 }
 
 .program-list {
@@ -680,4 +639,4 @@ footer {
     .section-title {
         font-size: 24px;
     }
-  }
+    }
