@@ -5,8 +5,8 @@ description: >-
   Write an awesome description for your new site here. You can edit this
   line in _config.yml. It will appear in your document head meta (for
   Google search results) and in your feed.xml site description.
-baseurl: "" # 如果你需要部署在子路径下（如example.com/blog），请修改这里
-url: "" # 部署后的完整URL（如https://twilightsnow2009.github.io/666/）
+baseurl: "/666" # 必须设置为仓库名，否则链接会失效
+url: "https://twilightsnow2009.github.io" # 部署后的完整URL（不带仓库名）
 twitter_username: your-twitter-handle
 github_username:  your-github-handle
 
@@ -18,8 +18,7 @@ timezone: Asia/Shanghai # 设置时区（根据你的位置调整）
 
 # 文章与页面配置
 paginate: 5 # 每页显示5篇文章
-paginate_pathpaginate: 5 # 每页显示5篇文章
-paginate_path: "/page:num/"
+paginate_path: "/page:num/" # 分页路径
 show_drafts: false # 不显示草稿文章
 future: false # 不显示日期在未来的文章
 
@@ -32,39 +31,8 @@ defaults:
       layout: "post"
       comments: true # 默认为文章启用评论
 
-# 插件配置
+# 插件配置（补全插件列表）
 plugins:
   - jekyll-feed
   - jekyll-paginate
   - jekyll-seo-tag
-
-# 站点结构配置
-collections:
-  pages:
-    output: true
-    permalink: /:path/
-
-# 网站作者信息（方便在模板中引用）
-author:
-  name: Your Name
-  bio: 关于你的简短介绍
-  avatar: /assets/images/avatar.jpg # 头像路径
-
-# 社交链接（用于页脚或侧边栏）
-social:
-  - platform: GitHub
-    url: https://github.com/your-github-username
-  - platform: Twitter
-    url: https://twitter.com/your-twitter-handle
-  - platform: LinkedIn
-    url: https://linkedin.com/in/your-linkedin-profile
-
-# 其他自定义设置
-disqus:
-  shortname: your-disqus-shortname # 如果你使用Disqus评论
-
-# 静态资源路径配置
-assets:
-  images: /assets/images/
-  css: /assets/css/
-  js: /assets/js/
