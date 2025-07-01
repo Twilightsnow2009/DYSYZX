@@ -1,4 +1,3 @@
-// 页面加载完成后执行
 document.addEventListener('DOMContentLoaded', function() {
     // 导航栏滚动效果
     window.addEventListener('scroll', function() {
@@ -31,8 +30,29 @@ document.addEventListener('DOMContentLoaded', function() {
                     link.classList.remove('active');
                 });
                 this.classList.add('active');
+                
+                // 点击菜单项后隐藏菜单（移动端）
+                if (window.innerWidth <= 768) {
+                    const nav = document.querySelector('nav');
+                    nav.classList.remove('show');
+                }
             }
         });
+    });
+
+    // 处理汉堡菜单点击事件
+    const menuToggle = document.querySelector('.menu-toggle');
+    const nav = document.querySelector('nav');
+
+    menuToggle.addEventListener('click', function() {
+        nav.classList.toggle('show');
+    });
+
+    // 窗口大小改变时处理导航菜单显示
+    window.addEventListener('resize', function() {
+        if (window.innerWidth > 768) {
+            nav.classList.remove('show');
+        }
     });
 
     // 新闻轮播
@@ -114,13 +134,5 @@ document.addEventListener('DOMContentLoaded', function() {
         } else {
             backToTopBtn.classList.remove('show');
         }
-    });
-
-    // 处理汉堡菜单点击事件
-    const menuToggle = document.querySelector('.menu-toggle');
-    const nav = document.querySelector('nav');
-
-    menuToggle.addEventListener('click', function() {
-        nav.classList.toggle('show');
     });
 });
