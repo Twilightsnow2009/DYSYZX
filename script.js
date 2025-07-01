@@ -115,4 +115,12 @@ document.addEventListener('DOMContentLoaded', function() {
             backToTopBtn.classList.remove('show');
         }
     });
+
+    // 处理汉堡菜单点击事件
+    const menuToggle = document.querySelector('.menu-toggle');
+    const nav = document.querySelector('nav');
+
+    menuToggle.addEventListener('click', function() {
+        nav.classList.toggle('show');
+    });
 });
