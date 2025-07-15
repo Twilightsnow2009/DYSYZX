@@ -301,17 +301,32 @@
             margin-top: 50px;
         }
 
-        /* 响应式媒体查询 */
-        @media (max-width: 480px) {
-            .intro h1 {
-                font-size: 2rem;
-            }
+        /* 嵌入视频样式 */
+.bilibili-video {
+    text-align: center;
+    margin: 50px auto;
+}
 
-            .feature-card {
-                padding: 20px;
-            }
-        }
-    </style>
+.video-iframe {
+    width: 100%; /* 宽度自适应 */
+    height: 100%; /* 高度自适应 */
+    aspect-ratio: 16 / 9; /* 保持16:9的宽高比 */
+    border: none;
+    margin: 0 auto;
+    display: block;
+}
+
+/* 响应式媒体查询 */
+@media (max-width: 480px) {
+    .intro h1 {
+        font-size: 2rem;
+    }
+
+    .feature-card {
+        padding: 20px;
+    }
+}
+</style>
 </head>
 <body>
     <!-- 汉堡菜单 -->
@@ -366,6 +381,18 @@
         <a href="https://pd.qq.com/s/fsp0rzag2?b=9" class="about-btn">了解更多</a>
     </div>
 
+
+
+    
+    <!-- 嵌入哔哩哔哩视频 -->
+    <div class="bilibili-video">
+        <h2>Termux交流社区视频</h2>
+        <iframe class="video-iframe" src="https://player.bilibili.com/player.html?bvid=BV1U43szcEzr&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
+    </div>
+
+
+    
+
     <!-- 公告 -->
     <div class="announcement" id="announcement">
         <h2>公告</h2>
@@ -374,18 +401,19 @@
 
             
             <p>Termux交流社区正在壮大，现急需有志之士加入我们的核心团队！以下部门现正火热招新！</p>
-<p>一、宣传部</p>
-<p>- 工作内容：制作宣传海报、视频，推广社区活动，提升社区知名度。</p>
-<p>- 要求：有创意，熟悉新媒体平台。</p>
-<p>二、运营部</p>
-<p>- 工作内容：策划社区活动，组织线上线下交流，提升社区活跃度。</p>
-<p>- 要求：善于组织协调。</p>
-<p>**注意：目前社区处于发展阶段，没有工资，纯靠热爱，希望你有足够的热情和责任感！**</p>
-<p>报名方式：加入QQ群(369925819)</p>
-<p>期待你的加入，让我们一起打造更棒的Termux交流社区！</p>
-<p>2025年7月6日</p>     
-        
-        
+            <p>一、宣传部</p>
+            <p>- 工作内容：制作宣传海报、视频，推广社区活动，提升社区知名度。</p>
+            <p>- 要求：有创意，熟悉新媒体平台。</p>
+            <p>二、运营部</p>
+            <p>- 工作内容：策划社区活动，组织线上线下交流，提升社区活跃度。</p>
+            <p>- 要求：善于组织协调。</p>
+            <p>**注意：目前社区处于发展阶段，没有工资，纯靠热爱，希望你有足够的热情和责任感！**</p>
+            <p>报名方式：加入QQ群(369925819)</p>
+            <p>期待你的加入，让我们一起打造更棒的Termux交流社区！</p>
+            <p>2025年7月6日</p>
+
+
+            
         </div>
     </div>
 
@@ -395,45 +423,42 @@
         <p>如果您有任何问题或建议，请随时联系我们。</p>
         <p>QQ群：369925819</p>
     </div>
-    
 
     <!-- 社区链接 -->
-<div class="community-links">
-    <h2>加入我们</h2>
-    <div class="links-container">
-        <div class="link-card">
-            <h3>哔哩哔哩</h3>
-            <p>Termux交流社区的空间</p>
-            <a href="https://m.bilibili.com/space/1254655627" target="_blank">访问哔哩哔哩</a>
-        </div>
-        <div class="link-card">
-            <h3>QQ群</h3>
-            <p>Termux交流社区官方群</p>
-            <a href="https://qm.qq.com/q/xhvJx1qLVm" target="_blank">加入QQ群</a>
-        </div>
-        <div class="link-card">
-            <h3>QQ频道</h3>
-            <p>Termux交流社区腾讯频道</p>
-            <a href="https://pd.qq.com/s/8b4en8mu0?b=9" target="_blank">加入QQ频道</a>
-        </div>
-        <div class="link-card">
-            <h3>CSDN博客</h3>
-            <p>Termux交流社区的博客</p>
-            <a href="https://blog.csdn.net/2403_88248420" target="_blank">访问CSDN博客</a>
-        </div>
-        <div class="link-card">
-            <h3>微信公众号</h3>
-            <p>Termux技术交流</p>
-            <a href="https://mp.weixin.qq.com/s?__biz=Mzg3NzE0NjQ2Nw==&mid=2247483657&idx=1&sn=0f97d7d8a9f8f8f8f8f8f8f8f8f8f8f8&scene=0" target="_blank">关注微信公众号</a>
+    <div class="community-links">
+        <h2>加入我们</h2>
+        <div class="links-container">
+            <div class="link-card">
+                <h3>哔哩哔哩</h3>
+                <p>Termux交流社区的空间</p>
+                <a href="https://m.bilibili.com/space/1254655627" target="_blank">访问哔哩哔哩</a>
+            </div>
+            <div class="link-card">
+                <h3>QQ群</h3>
+                <p>Termux交流社区官方群</p>
+                <a href="https://qm.qq.com/q/xhvJx1qLVm" target="_blank">加入QQ群</a>
+            </div>
+            <div class="link-card">
+                <h3>QQ频道</h3>
+                <p>Termux交流社区腾讯频道</p>
+                <a href="https://pd.qq.com/s/8b4en8mu0?b=9" target="_blank">加入QQ频道</a>
+            </div>
+            <div class="link-card">
+                <h3>CSDN博客</h3>
+                <p>Termux交流社区的博客</p>
+                <a href="https://blog.csdn.net/2403_88248420" target="_blank">访问CSDN博客</a>
+            </div>
+            <div class="link-card">
+                <h3>微信公众号</h3>
+                <p>Termux技术交流</p>
+            </div>
         </div>
     </div>
-</div>
-    
 
-<!-- 页脚 -->
-<footer>
-    <p>&copy; 2025 Termux交流社区. 保留所有权利.</p>
-</footer>
+    <!-- 页脚 -->
+    <footer>
+        <p>&copy; 2025 Termux交流社区. 保留所有权利.</p>
+    </footer>
 
 <script>
     // 汉堡菜单功能
@@ -458,3 +483,4 @@
 </script>
 </body>
 </html>
+       
