@@ -1,497 +1,577 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Termux交流社区</title>
-
-<!-- 这里是关键词标签 -->
-  <meta name="keywords" content="Termux交流社区, Android,Termux, Linux, 终端, Android Termux,编程, 开发, shell, bash, 脚本, 命令行">
-  <meta name="description" content="Termux交流社区是一个专为Android Termux用户量身打造的互动交流平台。
-
-我们致力于打造一个活跃的、有深度的学习环境，让每一位成员都能在交流中不断进步，掌握更多关于Termux的高级技巧和实用功能。
-
-无论是初学者还是资深玩家，都能在这里找到属于自己的位置，与志同道合的伙伴共同探索Android上的Linux世界。">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Termux交流社区 - Android Termux用户的专业交流平台</title>
+  <meta name="keywords" content="Termux交流社区,Android Termux,Linux终端,移动开发,编程学习,Shell脚本,命令行工具,开源社区,技术交流">
+  <meta name="description" content="Termux交流社区是国内领先的Android Termux用户社区，提供专业的Linux终端技术交流、Shell脚本开发、移动编程环境搭建等内容。无论是初学者还是技术大牛，都能在这里找到有价值的资源和志同道合的朋友。">
+  <meta name="author" content="Termux交流社区">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="Termux交流社区 - Android Termux用户的专业交流平台">
+  <meta property="og:description" content="专注于Android Termux技术交流，提供丰富的教程、案例和工具资源。">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://yourdomain.com">
+  <meta property="og:image" content="https://tc.z.wiki/autoupload/f/GENHffITdBvXEWFzr34st3WHG78jThlq6-h0TTlulE-yl5f0KlZfm6UsKj-HyTuv/20250716/AUd6/1131X1131/IMG_20250716_095822.jpg">
   
+  <style>
+    /* 全局样式 */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
     
-    <style>
-        /* 全局样式 */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
-        body {
-            background-color: #f5f7fa;
-            color: #333;
-            line-height: 1.6;
-        }
-
-        /* 汉堡菜单 */
-        .menu-toggle {
-            display: block;
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            z-index: 1000;
-            cursor: pointer;
-        }
-
-        .menu-toggle span {
-            display: block;
-            width: 25px;
-            height: 3px;
-            background-color: #333;
-            margin: 5px 0;
-            transition: 0.3s;
-        }
-
-        .menu {
-            position: fixed;
-            top: 0;
-            right: -300px;
-            width: 300px;
-            height: 100vh;
-            background-color: #fff;
-            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
-            transition: right 0.3s ease;
-            z-index: 999;
-            padding: 80px 20px 20px;
-        }
-
-        .menu.active {
-            right: 0;
-        }
-
-        .menu ul {
-            list-style: none;
-        }
-
-        .menu ul li {
-            margin-bottom: 20px;
-        }
-
-        .menu ul li a {
-            text-decoration: none;
-            color: #333;
-            font-size: 1.2rem;
-            transition: color 0.3s;
-        }
-
-        .menu ul li a:hover {
-            color: #3498db;
-        }
-
-        /* 关闭按钮 */
-        .close-btn {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            background: none;
-            border: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-        }
-
-        /* 内容区域 */
-        .content-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-
-        /* 引导部分 */
-        .intro {
-            text-align: center;
-            padding: 50px 20px;
-            background-color: #fff;
-            border-radius: 10px;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-            margin-top: 50px;
-        }
-
-        .intro h1 {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-            color: #2c3e50;
-        }
-
-        .intro p {
-            font-size: 1.1rem;
-            margin-bottom: 20px;
-            color: #555;
-        }
-
-        /* 功能特色 */
-        .features {
-            padding: 50px 20px;
-        }
-
-        .features h2 {
-            text-align: center;
-            font-size: 2rem;
-            margin-bottom: 40px;
-            color: #2c3e50;
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-
-        .feature-card {
-            background-color: #fff;
-            border-radius: 10px;
-            padding: 30px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s;
-        }
-
-        .feature-card:hover {
-            transform: translateY(-10px);
-        }
-
-        .feature-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 15px;
-            color: #2c3e50;
-        }
-
-        .feature-card p {
-            color: #555;
-        }
-
-        /* 关于我们 */
-        .about {
-            padding: 50px 20px;
-            text-align: center;
-        }
-
-        .about h2 {
-            font-size: 2rem;
-            margin-bottom: 30px;
-            color: #2c3e50;
-        }
-
-        .about p {
-            max-width: 800px;
-            margin: 0 auto 20px;
-            font-size: 1.1rem;
-            color: #555;
-        }
-
-        .about-btn {
-            display: inline-block;
-            background-color: #3498db;
-            color: white;
-            padding: 12px 30px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: bold;
-            transition: background-color 0.3s;
-        }
-
-        .about-btn:hover {
-            background-color: #2980b9;
-        }
-
-        /* 公告 */
-        .announcement {
-            padding: 50px 20px;
-            background-color: #fff;
-            border-radius: 10px;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-            margin: 50px auto;
-        }
-
-        .announcement h2 {
-            font-size: 2rem;
-            margin-bottom: 20px;
-            color: #2c3e50;
-            text-align: center;
-        }
-
-        .announcement-content {
-            max-width: 800px;
-            margin: 0 auto;
-            line-height: 1.8;
-            color: #555;
-        }
-
-        .announcement-content p {
-            margin-bottom: 15px;
-            text-align: justify;
-        }
-
-        /* 联系我们 */
-        .contact {
-            padding: 50px 20px;
-            text-align: center;
-        }
-
-        .contact h2 {
-            font-size: 2rem;
-            margin-bottom: 30px;
-            color: #2c3e50;
-        }
-
-        .contact p {
-            max-width: 800px;
-            margin: 0 auto 20px;
-            font-size: 1.1rem;
-            color: #555;
-        }
-
-        /* 社区链接 */
-        .community-links {
-            padding: 50px 20px;
-            text-align: center;
-        }
-
-        .community-links h2 {
-            font-size: 2rem;
-            margin-bottom: 30px;
-            color: #2c3e50;
-        }
-
-        .links-container {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 20px;
-        }
-
-        .link-card {
-            background-color: #fff;
-            border-radius: 10px;
-            padding: 20px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            width: 300px;
-            transition: transform 0.3s;
-        }
-
-        .link-card:hover {
-            transform: translateY(-10px);
-        }
-
-        .link-card h3 {
-            font-size: 1.3rem;
-            margin-bottom: 10px;
-            color: #2c3e50;
-        }
-
-        .link-card p {
-            color: #555;
-            margin-bottom: 15px;
-        }
-
-        .link-card a {
-            display: inline-block;
-            background-color: #3498db;
-            color: white;
-            padding: 8px 20px;
-            border-radius: 50px;
-            text-decoration: none;
-            transition: background-color 0.3s;
-        }
-
-        .link-card a:hover {
-            background-color: #2980b9;
-        }
-
-        /* 页脚 */
-        footer {
-            background-color: #2c3e50;
-            color: white;
-            text-align: center;
-            padding: 30px 20px;
-            margin-top: 50px;
-        }
-
-        /* 嵌入视频样式 */
-.bilibili-video {
-    text-align: center;
-    margin: 50px auto;
-}
-
-.video-iframe {
-    width: 100%; /* 宽度自适应 */
-    height: 100%; /* 高度自适应 */
-    aspect-ratio: 16 / 9; /* 保持16:9的宽高比 */
-    border: none;
-    margin: 0 auto;
-    display: block;
-}
-
-/* 响应式媒体查询 */
-@media (max-width: 480px) {
+    body {
+      background-color: #f5f7fa;
+      color: #333;
+      line-height: 1.6;
+    }
+    
+    /* 汉堡菜单 */
+    .menu-toggle {
+      display: block;
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 1000;
+      cursor: pointer;
+    }
+    
+    .menu-toggle span {
+      display: block;
+      width: 25px;
+      height: 3px;
+      background-color: #333;
+      margin: 5px 0;
+      transition: 0.3s;
+    }
+    
+    .menu {
+      position: fixed;
+      top: 0;
+      right: -300px;
+      width: 300px;
+      height: 100vh;
+      background-color: #fff;
+      box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+      transition: right 0.3s ease;
+      z-index: 999;
+      padding: 80px 20px 20px;
+    }
+    
+    .menu.active {
+      right: 0;
+    }
+    
+    .menu ul {
+      list-style: none;
+    }
+    
+    .menu ul li {
+      margin-bottom: 20px;
+    }
+    
+    .menu ul li a {
+      text-decoration: none;
+      color: #333;
+      font-size: 1.2rem;
+      transition: color 0.3s;
+    }
+    
+    .menu ul li a:hover {
+      color: #3498db;
+    }
+    
+    /* 关闭按钮 */
+    .close-btn {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+    
+    /* 内容区域 */
+    .content-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    
+    /* 引导部分 */
+    .intro {
+      text-align: center;
+      padding: 50px 20px;
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+      margin-top: 50px;
+    }
+    
     .intro h1 {
-        font-size: 2rem;
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      color: #2c3e50;
     }
-
+    
+    .intro p {
+      font-size: 1.1rem;
+      margin-bottom: 20px;
+      color: #555;
+    }
+    
+    /* 功能特色 */
+    .features {
+      padding: 50px 20px;
+    }
+    
+    .features h2 {
+      text-align: center;
+      font-size: 2rem;
+      margin-bottom: 40px;
+      color: #2c3e50;
+    }
+    
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+    }
+    
     .feature-card {
-        padding: 20px;
+      background-color: #fff;
+      border-radius: 10px;
+      padding: 30px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s;
     }
-}
-</style>
+    
+    .feature-card:hover {
+      transform: translateY(-10px);
+    }
+    
+    .feature-card h3 {
+      font-size: 1.5rem;
+      margin-bottom: 15px;
+      color: #2c3e50;
+    }
+    
+    .feature-card p {
+      color: #555;
+    }
+    
+    /* 关于我们 */
+    .about {
+      padding: 50px 20px;
+      text-align: center;
+    }
+    
+    .about h2 {
+      font-size: 2rem;
+      margin-bottom: 30px;
+      color: #2c3e50;
+    }
+    
+    .about p {
+      max-width: 800px;
+      margin: 0 auto 20px;
+      font-size: 1.1rem;
+      color: #555;
+    }
+    
+    .about-btn {
+      display: inline-block;
+      background-color: #3498db;
+      color: white;
+      padding: 12px 30px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: background-color 0.3s;
+    }
+    
+    .about-btn:hover {
+      background-color: #2980b9;
+    }
+    
+    /* 公告 */
+    .announcement {
+      padding: 50px 20px;
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+      margin: 50px auto;
+    }
+    
+    .announcement h2 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+      color: #2c3e50;
+      text-align: center;
+    }
+    
+    .announcement-content {
+      max-width: 800px;
+      margin: 0 auto;
+      line-height: 1.8;
+      color: #555;
+    }
+    
+    .announcement-content p {
+      margin-bottom: 15px;
+      text-align: justify;
+    }
+    
+    /* 联系我们 */
+    .contact {
+      padding: 50px 20px;
+      text-align: center;
+    }
+    
+    .contact h2 {
+      font-size: 2rem;
+      margin-bottom: 30px;
+      color: #2c3e50;
+    }
+    
+    .contact p {
+      max-width: 800px;
+      margin: 0 auto 20px;
+      font-size: 1.1rem;
+      color: #555;
+    }
+    
+    /* 社区链接 */
+    .community-links {
+      padding: 50px 20px;
+      text-align: center;
+    }
+    
+    .community-links h2 {
+      font-size: 2rem;
+      margin-bottom: 30px;
+      color: #2c3e50;
+    }
+    
+    .links-container {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+    
+    .link-card {
+      background-color: #fff;
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      width: 300px;
+      transition: transform 0.3s;
+    }
+    
+    .link-card:hover {
+      transform: translateY(-10px);
+    }
+    
+    .link-card h3 {
+      font-size: 1.3rem;
+      margin-bottom: 10px;
+      color: #2c3e50;
+    }
+    
+    .link-card p {
+      color: #555;
+      margin-bottom: 15px;
+    }
+    
+    .link-card a {
+      display: inline-block;
+      background-color: #3498db;
+      color: white;
+      padding: 8px 20px;
+      border-radius: 50px;
+      text-decoration: none;
+      transition: background-color 0.3s;
+    }
+    
+    .link-card a:hover {
+      background-color: #2980b9;
+    }
+    
+    /* 页脚 */
+    footer {
+      background-color: #2c3e50;
+      color: white;
+      text-align: center;
+      padding: 30px 20px;
+      margin-top: 50px;
+    }
+    
+    /* 页脚链接样式 */
+    footer a {
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    
+    /* 镜像站链接颜色修改为紫色 */
+    footer a[href="https://1hyql.github.io/Termux/"] {
+      color: #9b59b6 !important;
+    }
+    
+    footer a:hover {
+      text-decoration: underline;
+    }
+    
+    /* 嵌入视频样式 */
+    .bilibili-video {
+      text-align: center;
+      margin: 50px auto;
+    }
+    
+    .video-iframe {
+      width: 100%;
+      height: 100%;
+      aspect-ratio: 16 / 9;
+      border: none;
+      margin: 0 auto;
+      display: block;
+    }
+    
+    /* 响应式媒体查询 */
+    @media (max-width: 480px) {
+      .intro h1 {
+        font-size: 2rem;
+      }
+      
+      .feature-card {
+        padding: 20px;
+      }
+    }
+  </style>
 </head>
 <body>
-    <!-- 汉堡菜单 -->
-<div class="menu-toggle" id="menuToggle">
+  <!-- 汉堡菜单 -->
+  <div class="menu-toggle" id="menuToggle">
     <span></span>
     <span></span>
     <span></span>
-</div>
-
-<div class="menu" id="menu">
+  </div>
+  
+  <div class="menu" id="menu">
     <button class="close-btn" id="closeMenu">✕</button>
     <ul>
-        <li><a href="#">首页</a></li>
-        <li><a href="#about">关于我们</a></li>
-        <li><a href="#announcement">公告</a></li>
-        <li><a href="#contact">联系我们</a></li>
+      <li><a href="#">首页</a></li>
+      <li><a href="#about">关于我们</a></li>
+      <li><a href="#announcement">公告</a></li>
+      <li><a href="#contact">联系我们</a></li>
     </ul>
-</div>
-
-<div class="content-container">
+  </div>
+  
+  <div class="content-container" id="main-content">
     <!-- 引导部分 -->
     <div class="intro">
-        <h1>Termux交流社区</h1>
-        <p>Termux交流社区是一个专为Android Termux用户量身打造的互动交流平台。</p>
-        <p>我们致力于打造一个活跃的、有深度的学习环境，让每一位成员都能在交流中不断进步，掌握更多关于Termux的高级技巧和实用功能。</p>
-        <p>无论是初学者还是资深玩家，都能在这里找到属于自己的位置，与志同道合的伙伴共同探索Android上的Linux世界。</p>
+      <h1>Termux交流社区</h1>
+      <p>Termux交流社区是一个专为Android Termux用户量身打造的互动交流平台。</p>
+      <p>我们致力于打造一个活跃的、有深度的学习环境，让每一位成员都能在交流中不断进步，掌握更多关于Termux的高级技巧和实用功能。</p>
+      <p>无论是初学者还是资深玩家，都能在这里找到属于自己的位置，与志同道合的伙伴共同探索Android上的Linux世界。</p>
     </div>
-
+    
     <!-- 功能特色 -->
     <div class="features">
-        <h2>在Termux交流社区，你可以：</h2>
-        <div class="features-grid">
-            <div class="feature-card">
-                <h3>参与技术讨论</h3>
-                <p>与同行们交流使用心得，解决遇到的问题。</p>
-            </div>
-            <div class="feature-card">
-                <h3>分享原创内容</h3>
-                <p>分享自己的脚本、工具、项目等，展示个人才华和技术实力。</p>
-            </div>
-            <div class="feature-card">
-                <h3>共同成长</h3>
-                <p>无论你是新手还是专家，我们都热忱欢迎你的加入。</p>
-            </div>
+      <h2>在Termux交流社区，你可以：</h2>
+      <div class="features-grid">
+        <div class="feature-card">
+          <h3>参与技术讨论</h3>
+          <p>与同行们交流使用心得，解决遇到的问题。</p>
         </div>
+        <div class="feature-card">
+          <h3>分享原创内容</h3>
+          <p>分享自己的脚本、工具、项目等，展示个人才华和技术实力。</p>
+        </div>
+        <div class="feature-card">
+          <h3>共同成长</h3>
+          <p>无论你是新手还是专家，我们都热忱欢迎你的加入。</p>
+        </div>
+      </div>
     </div>
-
+    
     <!-- 关于我们 -->
     <div class="about" id="about">
-        <h2>关于我们</h2>
-        <p>在Termux交流社区，让我们一起学习、一起成长，共同构建一个更加繁荣的Termux生态系统。</p>
-        <a href="https://pd.qq.com/s/fsp0rzag2" class="about-btn">了解更多</a>
+      <h2>关于我们</h2>
+      <p>在Termux交流社区，让我们一起学习、一起成长，共同构建一个更加繁荣的Termux生态系统。</p>
+      <a href="https://pd.qq.com/s/fsp0rzag2" class="about-btn">了解更多</a>
     </div>
-
-
-
     
     <!-- 嵌入哔哩哔哩视频 -->
     <div class="bilibili-video">
-        <h2>Termux交流社区宣传片</h2>
-        <iframe class="video-iframe" src="https://player.bilibili.com/player.html?bvid=BV1U43szcEzr&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
+      <h2>Termux交流社区宣传片</h2>
+      <iframe class="video-iframe" src="https://player.bilibili.com/player.html?bvid=BV1U43szcEzr&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
     </div>
-
-
     
-
     <!-- 公告 -->
     <div class="announcement" id="announcement">
-        <h2>公告</h2>
-        <div class="announcement-content">
-
-
-            
-            <p>Termux交流社区正在壮大，现急需有志之士加入我们的核心团队！以下部门现正火热招新！</p>
-            <p>一、宣传部</p>
-            <p>- 工作内容：制作宣传海报、视频，推广社区活动，提升社区知名度。</p>
-            <p>- 要求：有创意，熟悉新媒体平台。</p>
-            <p>二、运营部</p>
-            <p>- 工作内容：策划社区活动，组织线上线下交流，提升社区活跃度。</p>
-            <p>- 要求：善于组织协调。</p>
-            <p>**注意：目前社区处于发展阶段，没有工资，纯靠热爱，希望你有足够的热情和责任感！**</p>
-            <p>报名方式：加入QQ群(369925819)</p>
-            <p>期待你的加入，让我们一起打造更棒的Termux交流社区！</p>
-            <p>2025年7月6日</p>
-
-
-            
-        </div>
+      <h2>公告</h2>
+      <div class="announcement-content">
+        <p>Termux交流社区正在壮大，现急需有志之士加入我们的核心团队！以下部门现正火热招新！</p>
+        <p>一、宣传部</p>
+        <p>- 工作内容：制作宣传海报、视频，推广社区活动，提升社区知名度。</p>
+        <p>- 要求：有创意，熟悉新媒体平台。</p>
+        <p>二、运营部</p>
+        <p>- 工作内容：策划社区活动，组织线上线下交流，提升社区活跃度。</p>
+        <p>- 要求：善于组织协调。</p>
+        <p>**注意：目前社区处于发展阶段，没有工资，纯靠热爱，希望你有足够的热情和责任感！**</p>
+        <p>报名方式：加入QQ群(369925819)</p>
+        <p>期待你的加入，让我们一起打造更棒的Termux交流社区！</p>
+        <p>2025年7月6日</p>
+      </div>
     </div>
-
+    
     <!-- 联系我们 -->
     <div class="contact" id="contact">
-        <h2>联系我们</h2>
-        <p>如果您有任何问题或建议，请随时联系我们。</p>
-        <p>QQ群：369925819</p>
+      <h2>联系我们</h2>
+      <p>如果您有任何问题或建议，请随时联系我们。</p>
+      <p>QQ群：369925819</p>
     </div>
-
+    
     <!-- 社区链接 -->
     <div class="community-links">
-        <h2>加入我们</h2>
-        <div class="links-container">
-            <div class="link-card">
-                <h3>哔哩哔哩</h3>
-                <p>Termux交流社区的空间</p>
-                <a href="https://m.bilibili.com/space/1254655627" target="_blank">访问哔哩哔哩</a>
-            </div>
-            <div class="link-card">
-                <h3>QQ群</h3>
-                <p>Termux交流社区官方群</p>
-                <a href="https://qm.qq.com/q/xhvJx1qLVm" target="_blank">加入QQ群</a>
-            </div>
-            <div class="link-card">
-                <h3>QQ频道</h3>
-                <p>Termux交流社区腾讯频道</p>
-                <a href="https://pd.qq.com/s/8b4en8mu0" target="_blank">加入QQ频道</a>
-            </div>
-            <div class="link-card">
-                <h3>CSDN博客</h3>
-                <p>Termux交流社区的博客</p>
-                <a href="https://blog.csdn.net/2403_88248420" target="_blank">访问CSDN博客</a>
-            </div>
-            <div class="link-card">
-                <h3>微信公众号</h3>
-                <p>Termux技术交流</p>
-            </div>
+      <h2>加入我们</h2>
+      <div class="links-container">
+        <div class="link-card">
+          <h3>哔哩哔哩</h3>
+          <p>Termux交流社区的空间</p>
+          <a href="https://m.bilibili.com/space/1254655627" target="_blank">访问哔哩哔哩</a>
         </div>
+        <div class="link-card">
+          <h3>QQ群</h3>
+          <p>Termux交流社区官方群</p>
+          <a href="https://qm.qq.com/q/xhvJx1qLVm" target="_blank">加入QQ群</a>
+        </div>
+        <div class="link-card">
+          <h3>QQ频道</h3>
+          <p>Termux交流社区腾讯频道</p>
+          <a href="https://pd.qq.com/s/8b4en8mu0" target="_blank">加入QQ频道</a>
+        </div>
+        <div class="link-card">
+          <h3>CSDN博客</h3>
+          <p>Termux交流社区的博客</p>
+          <a href="https://blog.csdn.net/2403_88248420" target="_blank">访问CSDN博客</a>
+        </div>
+        <div class="link-card">
+          <h3>微信公众号</h3>
+          <p>Termux技术交流</p>
+        </div>
+      </div>
     </div>
-
-    <!-- 页脚 -->
-    <footer>
-    <p>&copy; 2025 Termux交流社区. 保留所有权利.</p>
-    <p>该网站为主站，镜像站链接：<a href="https://1hyql.github.io/Termux/" target="_blank">镜像站</a></p>
-    </footer>
     
-<script>
+    <!-- 友情链接（仅保留官方相关资源） -->
+    <div class="mt-10 p-6 bg-white rounded-lg shadow-sm">
+      <h3 class="text-xl font-semibold mb-4">官方资源</h3>
+      <div class="flex flex-wrap gap-4">
+        <a href="https://termux.com" target="_blank" class="text-blue-600 hover:underline">Termux官方网站</a>
+        <a href="https://wiki.termux.com" target="_blank" class="text-blue-600 hover:underline">Termux官方Wiki</a>
+        <a href="https://github.com/termux" target="_blank" class="text-blue-600 hover:underline">Termux GitHub仓库</a>
+      </div>
+    </div>
+  </div>
+  
+  <!-- 页脚 -->
+  <footer>
+    <p>&copy; 2025 Termux交流社区. 保留所有权利.</p>
+    <p>网站已运行：<span id="uptime"></span></p>
+    <p>该网站为主站，镜像站链接：<a href="https://1hyql.github.io/Termux/" target="_blank">镜像站</a></p>
+  </footer>
+  
+  <script>
     // 汉堡菜单功能
     const menuToggle = document.getElementById('menuToggle');
     const menu = document.getElementById('menu');
     const closeMenu = document.getElementById('closeMenu');
-
+    
     menuToggle.addEventListener('click', () => {
-        menu.classList.add('active');
+      menu.classList.add('active');
     });
-
+    
     closeMenu.addEventListener('click', () => {
-        menu.classList.remove('active');
+      menu.classList.remove('active');
     });
-
+    
     // 点击空白区域关闭菜单
     document.addEventListener('click', (event) => {
-        if (!menu.contains(event.target) && !menuToggle.contains(event.target) && menu.classList.contains('active')) {
-            menu.classList.remove('active');
-        }
+      if (!menu.contains(event.target) && !menuToggle.contains(event.target) && menu.classList.contains('active')) {
+        menu.classList.remove('active');
+      }
     });
-</script>
+    
+    // 计算网站运行时间
+    const startDate = new Date('2025-07-16T00:00:00');
+    function updateUptime() {
+      const now = new Date();
+      const diff = now - startDate;
+      
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+      
+      document.getElementById('uptime').textContent = 
+        `${days}天 ${hours}小时 ${minutes}分钟 ${seconds}秒`;
+    }
+    
+    // 初始化并每秒更新
+    updateUptime();
+    setInterval(updateUptime, 1000);
+    
+    // 平滑滚动
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        
+        const targetId = this.getAttribute('href');
+        if (targetId === '#') return;
+        
+        const targetElement = document.querySelector(targetId);
+        if (targetElement) {
+          window.scrollTo({
+            top: targetElement.offsetTop - 20,
+            behavior: 'smooth'
+          });
+          
+          // 关闭菜单
+          if (menu.classList.contains('active')) {
+            menu.classList.remove('active');
+          }
+        }
+      });
+    });
+    
+    // 页面加载完成后的SEO优化
+    document.addEventListener('DOMContentLoaded', function() {
+      // 添加结构化数据（Schema.org）
+      const script = document.createElement('script');
+      script.type = 'application/ld+json';
+      script.textContent = JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "Termux交流社区",
+        "url": "https://yourdomain.com",
+        "description": "专注于Android Termux技术交流，提供丰富的教程、案例和工具资源。",
+        "keywords": "Termux交流社区,Android Termux,Linux终端,移动开发,编程学习,Shell脚本,命令行工具,开源社区,技术交流",
+        "publisher": {
+          "@type": "Organization",
+          "name": "Termux交流社区",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://tc.z.wiki/autoupload/f/GENHffITdBvXEWFzr34st3WHG78jThlq6-h0TTlulE-yl5f0KlZfm6UsKj-HyTuv/20250716/AUd6/1131X1131/IMG_20250716_095822.jpg"
+          }
+        }
+      });
+      document.head.appendChild(script);
+    });
+  </script>
 </body>
-</html>
-       
+    </html>
